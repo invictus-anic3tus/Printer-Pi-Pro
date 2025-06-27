@@ -1,7 +1,21 @@
 # Printer-Pi-Pro
 The all-in-one Raspberry Pi hat for controlling your 3D printer!
 
+<img src="https://github.com/user-attachments/assets/05c98fac-cc8c-4f03-ba1d-e7283102b243" alt="Title Image" width="100%" heigh="100%"></img>
+
+
 The Printer Pi Pro is a Raspberry Pi hat plus a relay module. The hat controls things like servos, an accelerometer, a fan for cooling the pi, and more. It also controls a relay that can turn your printer on or off!
+
+## Contents!! Yay!!
+- [Printer-Pi-Pro](#printer-pi-pro)
+- [Features](#features)
+- [Setup](#setup)
+  - [Music](#music)
+  - [Input Shaping](#input-shaping)
+  - [Servos](#servos)
+  - [Fan](#fan)
+  - [Relay](#relay)
+- [Contributing](#contributing)
 
 ## What you need:
 1. A raspberry pi (duh) with Klipper or Octoprint installed (all features are compatible with both!)
@@ -15,6 +29,8 @@ If you aren't controlling anything with the PCB, that's all you need! However, y
 3. Two servo ports: perfect for pitch and yaw of a webcam! or anything else really
 4. ADXL345 port: for an accelerometer and input shaping!
 5. Relay port: to control an AC or DC relay. This can be for lights, or to turn on/off the printer. More on this later.
+
+# Setup
 
 ## Music:
 
@@ -104,3 +120,8 @@ You can do the same thing for turning it off.
 
 ## Note:
 if you do decide to use an AC relay with this, always be sure that shorts can never occur! AC voltage is really really powerful, and you could get badly injured if you don't wire it correctly. That's all!
+
+# Contributing
+This is a pretty simple project, but if you have any ideas on things to add, anything in here that could be updated, etc, feel free to make an issue on this repo or email me! (email is in [my profile](https://github.com/invictus-anic3tus))
+
+<img src="https://github.com/user-attachments/assets/b3a1caaf-ae94-4c4c-8936-b172e45b9e04" alt="Ending Image" width="100%" heigh="100%"></img>
