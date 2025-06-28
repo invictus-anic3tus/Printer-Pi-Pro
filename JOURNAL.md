@@ -5,7 +5,7 @@ description: "The all-in-one Raspberry Pi 3D printer add-on!"
 created_at: "2025-06-26"
 ---
 
-## total time: 3 hrs
+## total time: 5.5 hrs
 
 # firstly
 
@@ -35,3 +35,26 @@ then i though to meself: "why stop at just controlling a relay? as long as i'm m
 I started making the PCB, and got the schematic done and the footprints added. I had to do a bunch of research about solid state relay amperage, raspberry pi pwm outputs, servos, and more to get started. i also added a buzzer, hopefully to make music and little beeps!
 
 3 hrs
+
+### day two - june 27
+Today i pretty much finished the PCB! I placed all the components (all on one side for single-side assembly!), routed the wires, and learned how to do copper pours. I added some ground pours both cuz they're cool and because it makes it easy to route ground. It's looking quite good!
+
+![image](https://github.com/user-attachments/assets/212c6bb1-469b-4982-8ee0-1dbfafb7e7b5)
+![image](https://github.com/user-attachments/assets/ec7b4a88-47f5-4b49-b34a-9a16911ebaaf)
+
+![image](https://github.com/user-attachments/assets/40646067-8858-459c-b2b9-70f6d47fd802)
+![image](https://github.com/user-attachments/assets/e3e629e5-3b6e-499d-bef0-8d23540b7ec5)
+
+R2D2!  
+![image](https://github.com/user-attachments/assets/57d79acc-35de-48f9-ad8a-6c532dd3ad10)
+
+I think i want to manufacture it green to match the Rpi. Right now, the PCB uses the two transistor circuits to control the fan and the relay (and i realized you can actually control any 5V device with it that uses less than 800mA), two PWM gpios to control servos, a gpio to control the buzzer, and SPI communication to the ADXL345 port. I made a ton of progress today, which I'm proud of.
+
+2.5 hrs
+
+### day three - june 28
+today i plan to finish this thing! It's a pretty simple and small project, but i'm happy im able to make pcbs this quickly now. I did a bit of factchecking and realized I need the buzzer on a PWM pin, not just any old GPIO. I unrouted it, fixed the schematic, deleted my copper pours, _re-_routed it, and finally redid my copper pours. perfect! I've been making this thing in easyeda instead of kicad, because I used it once on a computer without Kicad and thought it'd be nice to learn another eda program. turns out, it's actually super... well... easy!
+
+However, I realized that I can't export kicad files (which everybody uses) from easyeda... welp. I can, however, export Altium files! I think KiCad can import those. According to EasyEDA, sometimes Altium exports come out wrong. So if you need to import it into Altium or KiCad, know that you may need to do some patchwork. Here's some pics for reference: (ignore the giant copyright :yum:)
+
+![Printer-Pi-Pro_Schematic_Reference](https://github.com/user-attachments/assets/ad8f5136-f840-4789-8cb4-63b0acfed138)
