@@ -5,7 +5,7 @@ description: "The all-in-one Raspberry Pi 3D printer add-on!"
 created_at: "2025-06-26"
 ---
 
-## total time: 5.5 hrs
+## total time: 8.5 hrs
 
 # firstly
 
@@ -58,3 +58,10 @@ today i plan to finish this thing! It's a pretty simple and small project, but i
 However, I realized that I can't export kicad files (which everybody uses) from easyeda... welp. I can, however, export Altium files! I think KiCad can import those. According to EasyEDA, sometimes Altium exports come out wrong. So if you need to import it into Altium or KiCad, know that you may need to do some patchwork. Here's some pics for reference: (ignore the giant copyright :yum:)
 
 ![Printer-Pi-Pro_Schematic_Reference](https://github.com/user-attachments/assets/ad8f5136-f840-4789-8cb4-63b0acfed138)
+
+2 hrs
+
+### day four - june 29
+today i exported everything, uploaded it, made sure jlcpcb checkout works, and figured out you can combine jlc and lcsc orders! ima do that + get my parts from lcsc since its cheaper than pcba. no design today, just exporting all the files and such.
+
+1 hr
