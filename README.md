@@ -15,6 +15,7 @@ The Printer Pi Pro is a Raspberry Pi hat plus a relay module. The hat controls t
   - [Servos](#servos)
   - [Fan](#fan)
   - [Relay](#relay)
+- [Ordering](#ordering)
 - [Contributing](#contributing)
 
 ## What you need:
@@ -120,6 +121,9 @@ You can do the same thing for turning it off.
 
 ## Note:
 if you do decide to use an AC relay with this, always be sure that shorts can never occur! AC voltage is really really powerful, and you could get badly injured if you don't wire it correctly. That's all!
+
+# Ordering
+The PCB Gerber files, BOM, and CPL (Pick-in-place) file are all in the PCB_Files folder. What I did was order just the PCB (not assembled) through JLCPCB, then combine it with an LCSC order as described [here](https://lcsc.com/faqs/notice?id=D2E15B9830B18723CDFFC807606915A6). Alternatively, you could order an assembled PCB, or a non-assembled PCB with the parts from a PCB place that lets you do that. JLC only gives you the parts if you buy the PCB assembled. All the parts can be ordered from LCSC. You can download the LCSC cart from the PCB_Files folder as well.
 
 # Contributing
 This is a pretty simple project, but if you have any ideas on things to add, anything in here that could be updated, etc, feel free to make an issue on this repo or email me! (email is in [my profile](https://github.com/invictus-anic3tus))
