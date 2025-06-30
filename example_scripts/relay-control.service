@@ -1,0 +1,14 @@
+[Unit]
+Description=GPIO2 Relay Controller
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=pi
+ExecStart=/usr/bin/python3 /home/pi/relay/relay-service.py
+ExecStop=/usr/bin/python3 /home/pi/relay/relay-off.py
+
+[Install]
+WantedBy=multi-user.target
