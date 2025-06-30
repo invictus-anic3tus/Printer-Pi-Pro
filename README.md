@@ -1,7 +1,7 @@
 # Printer-Pi-Pro
 The all-in-one Raspberry Pi hat for controlling your 3D printer!
 
-<img src="https://github.com/user-attachments/assets/05c98fac-cc8c-4f03-ba1d-e7283102b243" alt="Title Image" width="100%" heigh="100%"></img>
+<img src="https://github.com/invictus-anic3tus/Printer-Pi-Pro/blob/main/images/Printer-Pi-Pro_IMG1.png" alt="Title Image" width="100%" heigh="100%"></img>
 
 
 The Printer Pi Pro is a Raspberry Pi hat plus a relay module. The hat controls things like servos, an accelerometer, a fan for cooling the pi, and more. It also controls a relay that can turn your printer on or off!
@@ -128,4 +128,4 @@ The PCB Gerber files, BOM, and CPL (Pick-in-place) file are all in the PCB_Files
 # Contributing
 This is a pretty simple project, but if you have any ideas on things to add, anything in here that could be updated, etc, feel free to make an issue on this repo or email me! (email is in [my profile](https://github.com/invictus-anic3tus))
 
-<img src="https://github.com/user-attachments/assets/b3a1caaf-ae94-4c4c-8936-b172e45b9e04" alt="Ending Image" width="100%" heigh="100%"></img>
+<img src="https://github.com/invictus-anic3tus/Printer-Pi-Pro/blob/main/images/Printer-Pi-Pro_IMG2.png" alt="Ending Image" width="100%" heigh="100%"></img>
