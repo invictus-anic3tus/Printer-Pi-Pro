@@ -79,6 +79,8 @@ pwm.stop()
 GPIO.cleanup()
 ```
 
+There are more example scripts in the example_scripts folder!
+
 ## Controlling servos
 
 Servos are quite easy to control! Here's a good instructables guide: [https://www.instructables.com/Controlling-Servo-Motor-Sg90-With-Raspberry-Pi-4/](https://www.instructables.com/Controlling-Servo-Motor-Sg90-With-Raspberry-Pi-4/) You can control your shell scripts the same way you do with the buzzer scripts. You can use the servos to extend a Klicky docking arm, move a webcam, or clear the build plate. Servo 1 is connected to GPIO 13, and Servo 2 is connected to GPIO 19, which are both PWM pins.
@@ -92,44 +94,72 @@ Input shaping for Octoprint + Marlin: [https://community.octoprint.org/t/octopri
 Input shaping for Klipper: [https://www.klipper3d.org/Resonance_Compensation.html](https://www.klipper3d.org/Resonance_Compensation.html)
 
 ## Controlling the relay
+
 The relay port simply outputs 5V from the main power source, meaning it can draw up to 800mA through the 2N2222A transistor. You could actually use it for any low-power 5V device you wish, but I think most people will use it for a relay. You can use it to switch 24V from the PSU using a DC-DC relay, or, like I am, you can use it to switch an AC relay. Simply connect 5V to the input voltage on your relay, and GPIO2 to the ground. Note that this does _not_ go straight to GPIO2. I labelled it that simply as a reference as to which GPIO you should set in your script. In reality, it goes through a transistor circuit just like the fan's.
 
-This port, however, does not have a PWM output like the fan does. You could attach a fan to it, but it could only run at 0% or 100%. So the on script (we'll call it relay-on.py) could look something like:
+This port, however, does not have a PWM output like the fan does. You could attach a fan to it, but it could only run at 0% or 100%. So the on/handle-interupts script (we'll call it relay-service.py) could look something like:
 
 ```
 import RPi.GPIO as GPIO
 import time
+import signal
+import sys
 
 RELAY_PIN = 2 # we're using GPIO 2
 
+def cleanup(sig, frame)
+    GPIO.cleanup() # this sets everything low, turning off the relay
+    sys.exit(0) # exits with success
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(RELAY_PIN, GPIO.OUT)
-
 GPIO.output(RELAY_PIN, GPIO.HIGH) # switch the relay on
+
+signal.signal(signal.SIGINT, cleanup) # this handles Ctrl+C's and other interruptions
+signal.signal(signal.SIGTERM, cleanup) # this handles systemd's termination signals
+
+while True: # this doesn't let the script turn off until it's interrupted or ended
+    time.sleep(1) # wait for one second between loops, so as not to overload the system lol
 ```
 
 You could put this simply in a folder like /home/pi/relay/ for easy access.
 
-Pretty straightforward! However, where this feature can shine the most, is turning the printer on or off remotely. To do this, simply use this extension for Klipper: [Gcode Shell Commands extension](https://github.com/dw-0/kiauh/blob/master/docs/gcode_shell_command.md), or in Octoprint + Marlin, use [this one](https://plugins.octoprint.org/plugins/gcodesystemcommands/). You can use a script to turn the relay on (make sure not to call GPIO.cleanup()! It would turn the relay off at the end of the script) and one to turn it off, and add these as GCode commands in your printer's interface. But the issue here is, you can't run GCode while the printer is off! In this case, you'd have to SSH into the Pi and turn it on by manually running the script. Another thing you can do is make the on script start up when the Pi powers on, so that you only have to turn on the Pi and the printer turns on afterwards. First, open `/etc/systemd/system/` and create a new file such as `relay-on.service`. Paste the following:
+Next, we have to make an off script, like the following:
+
+```
+import RPi.GPIO as GPIO
+
+RELAY_PIN = 2 # we're using gpio 2
+GPIO.setmode(GPIO.BCM) # use gpio numbers instead of pin numbers
+GPIO.setup(RELAY_PIN, GPIO.OUT) # set it to be an output
+GPIO.output(RELAY_PIN, GPIO.LOW) # turn it off
+GPIO.cleanup() # clean up and exit gracefully
+```
+
+Now, make the systemd service. You can make the relay start up when the Pi powers on, so that you only have to turn on the Pi and the printer turns on afterwards. First, open `/etc/systemd/system/` and create a new file such as `relay-control.service`. Paste the following:
+
 ```
 [Unit]
-Description=Turn GPIO2 Relay On
+Description=GPIO2 Relay Controller
 After=network.target
-StartLimitIntervalSec=0
 
 [Service]
 Type=simple
 Restart=always
 RestartSec=1
 User=pi
-ExecStart=/usr/bin/python3 /home/pi/relay/relay-on.py
+ExecStart=/usr/bin/python3 /home/pi/relay/relay-service.py
+ExecStop=/usr/bin/python3 /home/pi/relay/relay-off.py
 
 [Install]
 WantedBy=multi-user.target
 ```
-Now you can enable it to startup every time the Pi boots! You can do this with `sudo systemctl enable relay-on.service`.
 
-You can do the same thing for turning it off.
+What the above does is setup a service, just like Klipper is a service and Crowsnest is a service. It sets it to be simple, meaning it doesn't fork. It always restarts if it stops or crashes, and waits a second between attempts. It runs the script as the user pi (replace this with your admin user) and when starting, runs relay-service.py, and when it's stopped it runs relay-off.py. This means that when you first start the script, i.e., on boot, it runs relay-service.py, turning on the relay, and when you run the command to stop it, `sudo systemctl stop relay-control`, or if you power off the pi, it powers off the relay using relay-off.py or through relay-service.py's cleanup() function.
+
+Now, if you want to, you can first reload systemd with `sudo systemctl daemon-reload`, and then enable the service to start up every time the Pi boots! You can do this with `sudo systemctl enable relay-control`. This won't start it immediately after running; to do that you can run `sudo systemctl start relay-control`.
+
+Pretty straightforward! However, where this feature can shine the most, is turning the printer on or off remotely. To do this, simply use this extension for Klipper: [Gcode Shell Commands extension](https://github.com/dw-0/kiauh/blob/master/docs/gcode_shell_command.md), or in Octoprint + Marlin, use [this one](https://plugins.octoprint.org/plugins/gcodesystemcommands/). You can add the commands `sudo systemctl start relay-control` to turn it on and `sudo systemctl stop relay-control` to turn it off as GCode commands in your printer's interface. But the issue here is, you can't run GCode while the printer is off! In this case, you'd have to SSH into the Pi and turn it on by manually running the script, or simply reboot the Pi if you've configured the service to start on boot.
 
 ## Note:
 if you do decide to use an AC relay with this, always be sure that shorts can never occur! AC voltage is really really powerful, and you could get badly injured if you don't wire it correctly. That's all!
