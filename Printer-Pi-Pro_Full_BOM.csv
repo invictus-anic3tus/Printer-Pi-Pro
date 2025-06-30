@@ -1,0 +1,15 @@
+Part,Link,Per Part,Quantity,Total,Notes
+PCB (No parts),https://jlcpcb.com,$2.10,1,$2.10,
+1N4148W Diode,https://lcsc.com/product-detail/image/1N4148W_C81598.html,$0.01,50,$0.54,
+6P JST-XH Port,https://lcsc.com/product-detail/Wire-To-Board-Connector_JST-B6B-XH-A-GU_C265366.html,$0.42,5,$2.11,
+2P JST-XH Port,https://lcsc.com/product-detail/image/B2B-XH-A-LF-SN_C158012.html,$0.03,20,$0.69,
+0805 Resistor,https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Viking-Tech-ARG05FTC5000_C2828857.html,$0.01,50,$0.45,
+2N2222A Transistor,https://lcsc.com/product-detail/image/2N2222A_C5330385.html,$0.02,50,$0.87,
+Passive Buzzer,https://lcsc.com/product-detail/image/YS-MBZ12085C05R42_C409842.html,$0.14,5,$0.68,
+3P Pinheader,https://lcsc.com/product-detail/image/PZ254V-11-03P_C2937625.html,$0.02,50,$0.75,
+2x20P Socket header,https://lcsc.com/product-detail/image/2-54-2-20_C2977589.html,$0.19,5,$0.97,
+6P JST-XH Wire housing,https://lcsc.com/product-detail/image/XHP-6_C144405.html,$0.03,20,$0.52,
+AC Relay,https://www.amazon.com/gp/product/B08GPB7N2T/,$11.79,1,$11.79,
+5V DC Fan,https://www.amazon.com/2Packs-Wathai-Blower-Radial-Cooling/dp/B07RMY75GH/,$10.99,0,$0.00,(owned)
+,,,Shipping + Tax,Unknown (merging JLC+LCSC) likely $20,
+,,,Grand Total,$21.46,
