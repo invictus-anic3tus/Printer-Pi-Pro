@@ -16,6 +16,7 @@ The Printer Pi Pro is a Raspberry Pi hat plus a relay module. The hat controls t
   - [Fan](#fan)
   - [Relay](#relay)
 - [Ordering](#ordering)
+  - [BOM](#bom) 
 - [Contributing](#contributing)
 
 ## What you need:
@@ -128,6 +129,26 @@ The PCB Gerber files, BOM, and CPL (Pick-in-place) file are all in the PCB_Files
 You'll also need some JST-XH wire housings to fit into the ports on the PCB. If you're combining an LCSC order and a JLCPCB order as mentioned above, you can simply add these to the cart. For example, [this](https://lcsc.com/product-detail/Housings-Wire-To-Board-Wire-To-Wire_JST-XHP-6_C144405.html) is a 6-pin housing to fit into the ADXL345 port. If you're getting an assembled PCB from JLCPCB, you'll have to buy the housings separately, whether through JLCPCB's part cart or a seller such as AliExpress or Amazon.
 
 Also, keep in mind that there's only one component on the bottom side of the PCB: the Raspberry Pi pinheader. This was another reason I bought from LCSC and combined the shipping with JLCPCB, because if I had gotten an assembled PCB from JLC, I would've had to either get a double-sided PCB or put the header on the front, desolder it, and re-solder it onto the back. The PCB also has 4 SMD components. They aren't anything super hard to solder, just two 0805 size resistors and two SOD123F size diodes.
+
+## BOM
+|Part               |Link                                                                                              |Per Part|Quantity      |Total                  |
+|-------------------|--------------------------------------------------------------------------------------------------|--------|--------------|-----------------------|
+|PCB (No parts)     |https://jlcpcb.com                                                                                |$2.10   |1             |$2.10                  |
+|1N4148W Diode      |https://lcsc.com/product-detail/image/1N4148W_C81598.html                                         |$0.01   |50            |$0.54                  |
+|6P JST-XH Port     |https://lcsc.com/product-detail/Wire-To-Board-Connector_JST-B6B-XH-A-GU_C265366.html              |$0.42   |5             |$2.11                  |
+|2P JST-XH Port     |https://lcsc.com/product-detail/image/B2B-XH-A-LF-SN_C158012.html                                 |$0.03   |20            |$0.69                  |
+|0805 Resistor      |https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Viking-Tech-ARG05FTC5000_C2828857.html|$0.01   |50            |$0.45                  |
+|2N2222A Transistor |https://lcsc.com/product-detail/image/2N2222A_C5330385.html                                       |$0.02   |50            |$0.87                  |
+|Passive Buzzer     |https://lcsc.com/product-detail/image/YS-MBZ12085C05R42_C409842.html                              |$0.14   |5             |$0.68                  |
+|3P Pinheader       |https://lcsc.com/product-detail/image/PZ254V-11-03P_C2937625.html                                 |$0.02   |50            |$0.75                  |
+|2x20P Socket header|https://lcsc.com/product-detail/image/2-54-2-20_C2977589.html                                     |$0.19   |5             |$0.97                  |
+|6P JST-XH Housing  |https://lcsc.com/product-detail/image/XHP-6_C144405.html                                          |$0.03   |20            |$0.52                  |
+|AC Relay           |https://www.amazon.com/gp/product/B08GPB7N2T/                                                     |$11.79  |1             |$11.79                 |
+|5V DC Fan          |https://lcsc.com/product-detail/image/MF40100V2-1000C-A99_C456919.html                            |$2.59   |1             |$2.59                  |
+|-------------------|                                                                                                  |--------|              |-----------------------|
+|                   |                                                                                                  |        |Total         |$24.05                 |
+|                   |                                                                                                  |        |Shipping + Tax|~$20 (merging JLC+LCSC)|
+
 
 # Contributing
 This is a pretty simple project, but if you have any ideas on things to add, anything in here that could be updated, etc, feel free to make an issue on this repo or email me! (email is in [my profile](https://github.com/invictus-anic3tus))
