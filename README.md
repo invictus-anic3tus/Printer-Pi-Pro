@@ -47,7 +47,7 @@ If you aren't controlling anything with the PCB, that's all you need! However, y
 
 ## Music with the buzzer
 
-How to play music with the buzzer on the Pi with a script: [https://projects.raspberrypi.org/en/projects/introduction-to-the-pico/9](https://projects.raspberrypi.org/en/projects/introduction-to-the-pico/9) However, 3D printer firmware doesn't natively support running Raspberry Pi scripts using Gcode. In Klipper firmware, you can do it with Gcode with the [Gcode Shell Commands extension](https://github.com/dw-0/kiauh/blob/master/docs/gcode_shell_command.md). In Octoprint + Marlin, use [this](https://plugins.octoprint.org/plugins/gcodesystemcommands/). The buzzer here is connected to GPIO 3.
+How to play music with the passive buzzer on the Pi with a script: [https://www.circuitbasics.com/how-to-use-buzzers-with-raspberry-pi/](https://www.circuitbasics.com/how-to-use-buzzers-with-raspberry-pi/) However, 3D printer firmware doesn't natively support running Raspberry Pi scripts using Gcode. In Klipper firmware, you can do it with Gcode with the [Gcode Shell Commands extension](https://github.com/dw-0/kiauh/blob/master/docs/gcode_shell_command.md). In Octoprint + Marlin, use [this](https://plugins.octoprint.org/plugins/gcodesystemcommands/). The buzzer here is connected to GPIO 3.
 
 ## Controlling the fan
 
