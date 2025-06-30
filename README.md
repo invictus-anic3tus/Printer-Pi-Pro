@@ -10,11 +10,11 @@ The Printer Pi Pro is a Raspberry Pi hat plus a relay module. The hat controls t
 - [Printer-Pi-Pro](#printer-pi-pro)
 - [Features](#features)
 - [Setup](#setup)
-  - [Music](#music)
-  - [Input Shaping](#input-shaping)
-  - [Servos](#servos)
-  - [Fan](#fan)
-  - [Relay](#relay)
+  - [Buzzer](#music-with-the-buzzer)
+  - [Fan](#controlling-the-fan)
+  - [Servos](#controlling-servos)
+  - [Input Shaping](#input-shaping-with-the-adxl345)
+  - [Relay](#controlling-the-relay)
 - [Ordering](#ordering)
   - [BOM](#bom) 
 - [Contributing](#contributing)
@@ -34,23 +34,22 @@ If you aren't controlling anything with the PCB, that's all you need! However, y
 
 # Setup
 
-## Music:
+![Wiring](https://github.com/invictus-anic3tus/Printer-Pi-Pro/blob/main/images/Printer-Pi-Pro_Wiring.jpg)
+
+|Part   |Pins           |
+|-------|---------------|
+|Buzzer |PWM GPIO3      |
+|Fan    |PWM GPIO18     |
+|Servo 1|PWM GPIO13     |
+|Servo 2|PWM GPIO19     |
+|ADXL   |SPI Interface  |
+|Relay  |GPIO2 (Not PWM)|
+
+## Music with the buzzer
 
 How to play music with the buzzer on the Pi with a script: [https://projects.raspberrypi.org/en/projects/introduction-to-the-pico/9](https://projects.raspberrypi.org/en/projects/introduction-to-the-pico/9) However, 3D printer firmware doesn't natively support running Raspberry Pi scripts using Gcode. In Klipper firmware, you can do it with Gcode with the [Gcode Shell Commands extension](https://github.com/dw-0/kiauh/blob/master/docs/gcode_shell_command.md). In Octoprint + Marlin, use [this](https://plugins.octoprint.org/plugins/gcodesystemcommands/). The buzzer here is connected to GPIO 3.
 
-## Input Shaping:
-
-If you don't already know, input shaping is the method of using an accelerometer to measure vibrations when moving the 3D printer parts at high speeds. Normally, these vibrations can cause ringing issues in the print, but with input shaping, the printer is able to compensate and use the vibrations and minimize ringing substantially. The ADXL345 connector on the board uses the same pinout as both of the below links do.
-
-Input shaping for Octoprint + Marlin: [https://community.octoprint.org/t/octoprint-pinput-shaping-a-plugin-to-test-input-shaping-with-marlin/63089](https://community.octoprint.org/t/octoprint-pinput-shaping-a-plugin-to-test-input-shaping-with-marlin/63089)
-
-Input shaping for Klipper: [https://www.klipper3d.org/Resonance_Compensation.html](https://www.klipper3d.org/Resonance_Compensation.html)
-
-## Servos:
-
-Servos are quite easy to control! Here's a good instructables guide: [https://www.instructables.com/Controlling-Servo-Motor-Sg90-With-Raspberry-Pi-4/](https://www.instructables.com/Controlling-Servo-Motor-Sg90-With-Raspberry-Pi-4/) You can control your shell scripts the same way you do with the buzzer scripts. You can use the servos to extend a Klicky docking arm, move a webcam, or clear the build plate. Servo 1 is connected to GPIO 13, and Servo 2 is connected to GPIO 19, which are both PWM pins.
-
-## Fan:
+## Controlling the fan
 
 The fan port is connected to a transistor circuit which turns the two-pin 5V fan on or off using GPIO 18. Additionally, using GPIO 18's PWM signal, you can put the fan at a percentage of speed, for example 25% speed when the Pi is at 40°C, 50% at 45°C, and so on. To change the PWM frequency via a Raspberry Pi script, simply use something like:
 
@@ -80,7 +79,19 @@ pwm.stop()
 GPIO.cleanup()
 ```
 
-## Relay
+## Controlling servos
+
+Servos are quite easy to control! Here's a good instructables guide: [https://www.instructables.com/Controlling-Servo-Motor-Sg90-With-Raspberry-Pi-4/](https://www.instructables.com/Controlling-Servo-Motor-Sg90-With-Raspberry-Pi-4/) You can control your shell scripts the same way you do with the buzzer scripts. You can use the servos to extend a Klicky docking arm, move a webcam, or clear the build plate. Servo 1 is connected to GPIO 13, and Servo 2 is connected to GPIO 19, which are both PWM pins.
+
+## Input shaping with the ADXL345
+
+If you don't already know, input shaping is the method of using an accelerometer to measure vibrations when moving the 3D printer parts at high speeds. Normally, these vibrations can cause ringing issues in the print, but with input shaping, the printer is able to compensate and use the vibrations and minimize ringing substantially. The ADXL345 connector on the board uses the same pinout as both of the below links do.
+
+Input shaping for Octoprint + Marlin: [https://community.octoprint.org/t/octoprint-pinput-shaping-a-plugin-to-test-input-shaping-with-marlin/63089](https://community.octoprint.org/t/octoprint-pinput-shaping-a-plugin-to-test-input-shaping-with-marlin/63089)
+
+Input shaping for Klipper: [https://www.klipper3d.org/Resonance_Compensation.html](https://www.klipper3d.org/Resonance_Compensation.html)
+
+## Controlling the relay
 The relay port simply outputs 5V from the main power source, meaning it can draw up to 800mA through the 2N2222A transistor. You could actually use it for any low-power 5V device you wish, but I think most people will use it for a relay. You can use it to switch 24V from the PSU using a DC-DC relay, or, like I am, you can use it to switch an AC relay. Simply connect 5V to the input voltage on your relay, and GPIO2 to the ground. Note that this does _not_ go straight to GPIO2. I labelled it that simply as a reference as to which GPIO you should set in your script. In reality, it goes through a transistor circuit just like the fan's.
 
 This port, however, does not have a PWM output like the fan does. You could attach a fan to it, but it could only run at 0% or 100%. So the on script (we'll call it relay-on.py) could look something like:
