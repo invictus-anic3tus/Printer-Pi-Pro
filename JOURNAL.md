@@ -5,7 +5,7 @@ description: "The all-in-one Raspberry Pi 3D printer add-on!"
 created_at: "2025-06-26"
 ---
 
-## total time: 8.5 hrs
+## total time: 10.5 hrs
 
 # firstly
 
@@ -65,3 +65,8 @@ However, I realized that I can't export kicad files (which everybody uses) from 
 today i exported everything, uploaded it, made sure jlcpcb checkout works, and figured out you can combine jlc and lcsc orders! ima do that + get my parts from lcsc since its cheaper than pcba. no design today, just exporting all the files and such.
 
 1 hr
+
+### day five - june 30
+today i double checked my connections, and realized the relay and fan ports were backwards. i fixed the schematic, updated the PCB... and it didn't work. eventually i figured out that i had to manually change the tracks on the footprint on the PCB, which is kinda strange. i also labelled the PCB, to make it more user-friendly. I updated the scripts a bit, and added some example ones. time to submit!!!
+
+2 hrs
