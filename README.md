@@ -1,13 +1,21 @@
-# Printer-Pi-Pro
-The all-in-one Raspberry Pi hat for controlling your 3D printer!
 
-<img src="https://github.com/invictus-anic3tus/Printer-Pi-Pro/blob/main/images/Printer-Pi-Pro_IMG1.png" alt="Title Image" width="100%" heigh="100%"></img>
+# <img src="https://github.com/invictus-anic3tus/Printer-Pi-Pro/blob/main/images/Printer-Pi-Pro_TitleIMG.png" alt="Title Image" width="100%" heigh="100%"></img>
+
+<h3 align="center">The all-in-one Raspberry Pi hat for controlling your 3D printer!</h3>
+
+<p align="center">
+  <img alt="Zero Vibe Coding" src="https://img.shields.io/badge/Zero-Vibe_Coding-blue?style=for-the-badge"></img>
+  <img alt="Funded by Hack Club" src="https://img.shields.io/badge/Hack_Club-Funded-ec3750?style=for-the-badge&logo=hackclub&logoColor=ec3750"></img>
+</p>
+
+
+
 
 
 The Printer Pi Pro is a Raspberry Pi hat plus a relay module. The hat controls things like servos, an accelerometer, a fan for cooling the pi, and more. It also controls a relay that can turn your printer on or off!
 
+
 ## Contents!! Yay!!
-- [Printer-Pi-Pro](#printer-pi-pro)
 - [Features](#features)
 - [Setup](#setup)
   - [Buzzer](#music-with-the-buzzer)
