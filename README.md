@@ -12,7 +12,7 @@
 
 
 
-The Printer Pi Pro is a Raspberry Pi hat plus a relay module. The hat controls things like servos, an accelerometer, a fan for cooling the pi, and more. It also controls a relay that can turn your printer on or off!
+The Printer Pi Pro is a Raspberry Pi HAT for a Klipper or Octoprint 3D printer host. The HAT controls things like servos, an accelerometer, a fan for cooling the pi, and more. It also controls a relay that can turn your printer on or off!
 
 
 ## Contents!! Yay!!
