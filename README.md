@@ -167,6 +167,8 @@ What the above does is setup a service, just like Klipper is a service and Crows
 
 Now, if you want to, you can first reload systemd with `sudo systemctl daemon-reload`, and then enable the service to start up every time the Pi boots! You can do this with `sudo systemctl enable relay-control`. This won't start it immediately after running; to do that you can run `sudo systemctl start relay-control`.
 
+However, the on script is actually only a failsafe. GPIO2, which controls the relay, is actually pulled-up by default, meaning that by default it turns on at boot, without any script. It's still a good idea to have the script, in case the default had been accidentally overriden. If you'd like to override this and not turn on the relay with the Pi, simply edit `/boot/firmware/config.txt` and add the line `gpio=2=pd` somewhere without a [bracketed] header.
+
 Pretty straightforward! However, where this feature can shine the most, is turning the printer on or off remotely. To do this, simply use this extension for Klipper: [Gcode Shell Commands extension](https://github.com/dw-0/kiauh/blob/master/docs/gcode_shell_command.md), or in Octoprint + Marlin, use [this one](https://plugins.octoprint.org/plugins/gcodesystemcommands/). You can add the commands `sudo systemctl start relay-control` to turn it on and `sudo systemctl stop relay-control` to turn it off as GCode commands in your printer's interface. But the issue here is, you can't run GCode while the printer is off! In this case, you'd have to SSH into the Pi and turn it on by manually running the script, or simply reboot the Pi if you've configured the service to start on boot.
 
 ## Note:
