@@ -5,7 +5,7 @@ description: "The all-in-one Raspberry Pi 3D printer add-on!"
 created_at: "2025-06-26"
 ---
 
-## total time: 10.5 hrs
+## total time: 15 hrs
 
 # firstly
 
@@ -70,3 +70,15 @@ today i exported everything, uploaded it, made sure jlcpcb checkout works, and f
 today i double checked my connections, and realized the relay and fan ports were backwards. i fixed the schematic, updated the PCB... and it didn't work. eventually i figured out that i had to manually change the tracks on the footprint on the PCB, which is kinda strange. i also labelled the PCB, to make it more user-friendly. I updated the scripts a bit, and added some example ones. time to submit!!!
 
 2 hrs
+
+### day six - july 14
+today I received the stuffs! I soldered everything up and it looks great :D
+
+no pics yet, im working on my next project now :)
+
+1.5 hrs
+
+### day seven - july 23
+today i finally hooked the thing up and started firmware, but turns out I used GPIO2 for relay control, which is by default pulled high, keeping the relay on no matter what I do! I had to do circuit surgery and manually connect it to GPIO4 instead, but it works perfectly now! I'm proud of my beautiful surgical operation lol
+
+3 hrs
