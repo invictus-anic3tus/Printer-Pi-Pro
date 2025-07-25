@@ -14,10 +14,10 @@ pwm.start(0)  # Start with fan off
 cpu = CPUTemperature()
 temp = cpu.temperature # grab cpu temp
 
-def cleanup(sig, frame)
+def cleanup(sig, frame):
     pwm.ChangeDutyCycle(0)
     pwm.stop()
-    GPIO.cleanup() # this sets everything low, turning off the relay
+    GPIO.cleanup()
     sys.exit(0) # exits with success
 
 signal.signal(signal.SIGINT, cleanup) # this handles Ctrl+C's and other interruptions
