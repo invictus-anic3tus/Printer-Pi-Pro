@@ -5,7 +5,7 @@ description: "The all-in-one Raspberry Pi 3D printer add-on!"
 created_at: "2025-06-26"
 ---
 
-## total time: 15 hrs
+## total time: 20 hrs
 
 # firstly
 
@@ -82,3 +82,13 @@ no pics yet, im working on my next project now :)
 today i finally hooked the thing up and started firmware, but turns out I used GPIO2 for relay control, which is by default pulled high, keeping the relay on no matter what I do! I had to do circuit surgery and manually connect it to GPIO4 instead, but it works perfectly now! I'm proud of my beautiful surgical operation lol
 
 3 hrs
+
+### day eight - july 25
+today I got the ADXL working! I ran the input shaper and I believe it helped the print quality... if only slightly.
+
+2.5 hrs
+
+### day nine - july 26
+today I got the buzzer working, and played some funny tunes! It's honestly quite silly hearing my 3D printer sing songs to me. I used GCode shell commands to have it play the Super Mario flagpole fanfare after finishing prints!
+
+2.5 hrs
